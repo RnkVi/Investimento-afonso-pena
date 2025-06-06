@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Investimento Estratégico em São José dos Pinhais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: #005F73;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-top: 0.5rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem; 
+        }
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 14px;
+            width: 2px;
+            height: 100%;
+            background-color: #0A9396;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-color: #EE9B00;
+            border: 4px solid #005F73;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-[#005F73] text-white p-8 text-center shadow-lg">
+        <img src="logo.png" alt="Logo Do Valle Incorporações" class="mx-auto mb-4 h-36">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Oportunidade de Investimento Estratégico</h1>
+        <p class="text-xl md:text-2xl font-light">Alta Rentabilidade em São José dos Pinhais (2025-2030)</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="intro" class="mb-12 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] mb-4">Um Ecossistema de Crescimento Único</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                Apresentamos uma oportunidade ímpar onde a expansão de uma infraestrutura chave e a valorização imobiliária convergem. Este é o momento ideal para investir em studios de alta demanda, capitalizando sobre um crescimento projetado e uma demanda crescente por hospedagem flexível.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-center mb-4 text-[#0A9396]">Panorama do Mercado Imobiliário (2025)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="kpi-card">
+                        <div class="kpi-value">R$ 5.672</div>
+                        <div class="kpi-label">Preço Médio / m²</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">11,73%</div>
+                        <div class="kpi-label">Valorização (12 meses)</div>
+                    </div>
+                     <div class="kpi-card">
+                        <div class="kpi-value">43ª</div>
+                        <div class="kpi-label">Posição no Ranking FipeZAP</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2 lg:col-span-1 bg-white rounded-lg shadow-md p-6 flex flex-col">
+                <h3 class="text-xl font-bold text-center mb-4 text-[#0A9396]">Potencial de Valorização (Próximos 5 Anos)</h3>
+                <p class="text-center text-gray-600 mb-4">A proximidade com o aeroporto é o principal fator de valorização, com projeções que superam 95%.</p>
+                <div class="chart-container flex-grow">
+                    <canvas id="valorizacaoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-center mb-6 text-[#0A9396]">O Catalisador: Expansão do Aeroporto Afonso Pena</h3>
+                <div class="relative">
+                    <div class="timeline-item">
+                        <div class="timeline-dot">1</div>
+                        <h4 class="font-bold text-lg text-[#EE9B00]">Novembro 2025: Início das Obras</h4>
+                        <p class="text-gray-600">Começa a construção da nova pista de 3.000 metros, a maior do Paraná.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">2</div>
+                        <h4 class="font-bold text-lg text-[#EE9B00]">Investimento: R$ 421,1 Milhões</h4>
+                        <p class="text-gray-600">Um aporte robusto para transformar o aeroporto em um hub internacional.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">3</div>
+                        <h4 class="font-bold text-lg text-[#EE9B00]">Dezembro 2026: Conclusão</h4>
+                        <p class="text-gray-600">A nova infraestrutura permite voos diretos para América do Norte e Europa, impulsionando o turismo e a logística.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-center mb-2 text-[#0A9396]">O Impacto Direto no Mercado de Airbnb</h3>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">A expansão criará uma demanda explosiva por hospedagem, mas a oferta não acompanhará. Isso resultará em escassez e aumento significativo dos preços das diárias.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Projeção do Preço da Diária</h4>
+                        <div class="chart-container">
+                             <canvas id="diariaChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Déficit de Oferta vs. Demanda (2027)</h4>
+                        <div class="chart-container">
+                            <canvas id="deficitChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-8">
+                <h3 class="text-2xl font-bold text-center mb-2 text-[#005F73]">Sua Oportunidade de Investimento: Studios de Alta Performance</h3>
+                 <p class="text-center text-gray-600 mb-8">Localizados a apenas 5 minutos do aeroporto, nossos studios são o produto ideal para capturar essa demanda.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center p-4 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-[#CA6702]">R$ 5k-7k</div>
+                        <div class="text-gray-600 mt-1">Receita Mensal Projetada</div>
+                    </div>
+                    <div class="text-center p-4 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-[#CA6702]">R$ 270 mil</div>
+                        <div class="text-gray-600 mt-1">Custo por Unidade</div>
+                    </div>
+                    <div class="text-center p-4 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-[#CA6702]">2028</div>
+                        <div class="text-gray-600 mt-1">Ano de Entrega</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-8">
+                 <h3 class="text-2xl font-bold text-center mb-6 text-[#005F73]">Exemplo de Investimento: Pacote com 10 Unidades</h3>
+                 <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3 font-bold uppercase text-gray-600 border border-gray-300">Descrição</th>
+                                <th class="p-3 font-bold uppercase text-gray-600 border border-gray-300 text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 text-gray-800 border border-gray-300">Investimento Total (10 unidades)</td>
+                                <td class="p-3 text-gray-800 border border-gray-300 text-right font-mono">R$ 2.700.000,00</td>
+                            </tr>
+                             <tr class="bg-blue-50 hover:bg-blue-100">
+                                <td class="p-3 text-gray-800 border border-gray-300 font-bold">Entrada Requerida (10%)</td>
+                                <td class="p-3 text-gray-800 border border-gray-300 text-right font-mono font-bold">R$ 270.000,00</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 text-gray-800 border border-gray-300">Pagamento Mensal (pós-entrega)</td>
+                                <td class="p-3 text-gray-800 border border-gray-300 text-right font-mono">R$ 9.000,00</td>
+                            </tr>
+                             <tr class="bg-green-50 hover:bg-green-100">
+                                <td class="p-3 text-gray-800 border border-gray-300 font-bold">Receita Mensal Conservadora (10 unidades)</td>
+                                <td class="p-3 text-gray-800 border border-gray-300 text-right font-mono font-bold">~ R$ 50.000,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+                 <p class="text-center text-gray-600 mt-4">O fluxo de caixa projetado tem potencial para cobrir o financiamento e gerar lucro significativo desde o início da operação.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#005F73] text-white p-8 mt-12 text-center">
+        <h2 class="text-3xl font-bold mb-4">Pronto para Investir no Futuro?</h2>
+        <p class="max-w-2xl mx-auto mb-6">Esta é a sua chance de participar de um projeto com alto potencial de retorno em uma das localizações mais promissoras do Brasil. Não perca o timing perfeito.</p>
+        <a href="https://wa.me/5541920041394" target="_blank" class="inline-block bg-[#EE9B00] hover:bg-[#CA6702] text-white font-bold py-3 px-8 rounded-full transition duration-300 text-lg shadow-lg hover:shadow-xl">
+            Agendar uma Reunião
+        </a>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const valorizacaoData = {
+            labels: ['Entorno do Aeroporto', 'Quississana', 'Costeira', 'Jardim Suíça'],
+            datasets: [{
+                label: 'Valorização em 5 anos (%)',
+                data: [95.3, 88.7, 86.2, 83.5],
+                backgroundColor: ['#EE9B00', '#E9D8A6', '#94D2BD', '#0A9396'],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        };
+
+        // É importante garantir que o DOM esteja carregado antes de tentar aceder aos elementos canvas
+        // No Colab, o script pode executar antes da renderização completa do HTML.
+        // Uma forma simples de tentar mitigar isso é envolver a lógica do gráfico numa função e chamá-la após um pequeno atraso,
+        // ou esperar por um evento como 'DOMContentLoaded' se o ambiente Colab o suportar de forma fiável para HTML injetado.
+        // No entanto, para simplicidade e dado que o Colab renderiza o HTML e depois executa o script,
+        // geralmente funciona bem. Mas se houver problemas, considere um 'setTimeout'.
+
+        function initializeCharts() {
+            try {
+                new Chart(document.getElementById('valorizacaoChart'), {
+                    type: 'bar',
+                    data: valorizacaoData,
+                    options: {
+                        ...tooltipTitleCallback,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                 ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+
+                const diariaData = {
+                    labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
+                    datasets: [{
+                        label: 'Preço Médio da Diária',
+                        data: [150.0, 172.5, 198.4, 228.2, 251.0, 269.0],
+                        fill: true,
+                        backgroundColor: 'rgba(148, 210, 189, 0.4)',
+                        borderColor: '#0A9396',
+                        tension: 0.4
+                    }]
+                };
+
+                new Chart(document.getElementById('diariaChart'), {
+                    type: 'line',
+                    data: diariaData,
+                    options: {
+                         ...tooltipTitleCallback,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                             y: {
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'R$ ' + value.toFixed(2);
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+                
+                const deficitData = {
+                    labels: ['Demanda Atendida', 'Déficit de Oferta'],
+                    datasets: [{
+                        data: [81.2, 18.8],
+                        backgroundColor: ['#0A9396', '#AE2012'],
+                        hoverOffset: 4,
+                        cutout: '70%'
+                    }]
+                };
+                
+                new Chart(document.getElementById('deficitChart'), {
+                    type: 'doughnut',
+                    data: deficitData,
+                    options: {
+                        ...tooltipTitleCallback,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                 callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed.toFixed(1) + '%';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Erro ao inicializar os gráficos:", e);
+                // Poderia adicionar aqui uma mensagem de erro visível no output HTML se os gráficos não carregarem.
+            }
+        }
+
+        // Chamar a inicialização dos gráficos.
+        // Se estiver a ter problemas com gráficos que não aparecem no Colab, pode tentar com um pequeno atraso:
+        // setTimeout(initializeCharts, 500); 
+        // Ou, idealmente, esperar pelo evento 'DOMContentLoaded' do iframe do Colab, se aplicável.
+        // Por agora, tentaremos a chamada direta.
+        if (document.readyState === 'complete' || (document.readyState !== 'loading' && !document.documentElement.doScroll)) {
+          initializeCharts();
+        } else {
+          document.addEventListener('DOMContentLoaded', initializeCharts);
+        }
+
+    </script>
+</body>
+</html>
